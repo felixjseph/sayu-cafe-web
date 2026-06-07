@@ -16,13 +16,13 @@ const dmSerifDisplay = DM_Serif_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Sayu Cafe | Start your day early, the Sayu way.',
+  title: 'Sayu Café | Friendly Neighborhood Cafe in the Province of Cebu',
   description:
     'Sayu Cafe is a warm, minimal cafe experience crafted for early mornings. Specialty coffee, matcha, and seasonal drinks made with care.',
   keywords: ['coffee', 'cafe', 'matcha', 'specialty coffee', 'Sayu', 'morning cafe'],
   icons: {
-    icon: '/icon.svg',
-    apple: '/apple-icon.png',
+    icon: '/sayu_sun.png',
+    apple: '/sayu_sun.png',
   },
   openGraph: {
     title: 'Sayu Cafe',
