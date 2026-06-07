@@ -51,9 +51,13 @@ export function MenuPreview() {
           </div>
           <Link
             href="#custom-drink"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary hover:gap-3"
+            className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary transition-all duration-300 ease-out hover:-translate-y-0.5 hover:text-primary/86"
           >
-            Explore Custom Drinks <ArrowRight size={16} />
+            <span className="relative">
+              Explore Custom Drinks
+              <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            </span>
+            <ArrowRight size={16} className="transition-transform duration-300 ease-out group-hover:translate-x-1" />
           </Link>
         </Reveal>
 

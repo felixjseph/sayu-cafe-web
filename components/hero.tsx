@@ -20,7 +20,7 @@ export function Hero() {
       {/* <div className="absolute left-1/2 top-[15%] h-52 w-52 -translate-x-1/2 rounded-full bg-accent/45 blur-3xl md:h-72 md:w-72" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background via-background/30 to-transparent" /> */}
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6 pb-18 pt-28 text-center md:px-10 md:pt-34">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 pb-18 pt-18 text-center md:px-10 md:pt-18">
         <div className="mx-auto max-w-3xl reveal reveal-visible">
           <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-white/82 backdrop-blur-sm">
             Specialty Coffee and Matcha
@@ -53,8 +53,8 @@ export function Hero() {
           </Link>
         </div>
 
-        <div className="reveal reveal-visible mt-12 flex flex-wrap items-center justify-center gap-3 text-left" style={{ transitionDelay: "220ms" }}>
-          {["Smooth interactions", "Minimal brand palette", "AI-ready direction"].map((item) => (
+        {/* <div className="reveal reveal-visible mt-12 flex flex-wrap items-center justify-center gap-3 text-left" style={{ transitionDelay: "220ms" }}>
+          {["Friendly Neighborhood Cafe", "Signature Blend", "Artisanal Pastries"].map((item) => (
             <div
               key={item}
               className="rounded-full border border-white/18 bg-white/8 px-4 py-2 text-sm text-white/80 backdrop-blur-sm"
@@ -62,7 +62,7 @@ export function Hero() {
               {item}
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/55">
