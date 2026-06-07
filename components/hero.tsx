@@ -1,62 +1,75 @@
 import Image from "next/image"
 import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
-// To replace the hero image, update this constant
 const HERO_IMAGE_SRC = "/images/hero-bg.jpg"
 
 export function Hero() {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
       <Image
         src={HERO_IMAGE_SRC}
-        alt="Sayu Café warm morning interior"
+        alt="Sayu Cafe warm morning interior"
         fill
         priority
-        className="object-cover object-center"
+        className="scale-105 object-cover object-center"
         sizes="100vw"
       />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-foreground/50" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,9,11,0.34),rgba(9,9,11,0.62))]" />
+      {/* <div className="absolute left-1/2 top-[15%] h-52 w-52 -translate-x-1/2 rounded-full bg-accent/45 blur-3xl md:h-72 md:w-72" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background via-background/30 to-transparent" /> */}
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-        {/* Eyebrow label */}
-        <span className="inline-block mb-6 text-xs font-medium tracking-[0.2em] uppercase text-white/70 border border-white/30 rounded-full px-4 py-1.5">
-          Specialty Coffee &amp; Matcha
-        </span>
+      <div className="relative z-10 mx-auto max-w-5xl px-6 pb-18 pt-28 text-center md:px-10 md:pt-34">
+        <div className="mx-auto max-w-3xl reveal reveal-visible">
+          <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-white/82 backdrop-blur-sm">
+            Specialty Coffee and Matcha
+          </span>
 
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-white leading-tight text-balance mb-6">
-          Start your day early,{" "}
-          <span className="text-accent">the Sayu way.</span>
-        </h1>
+          <h1 className="mt-8 font-serif text-5xl leading-[0.96] text-white text-balance sm:text-6xl md:text-8xl">
+            Quiet mornings,
+            <span className="block text-accent">beautifully brewed.</span>
+          </h1>
 
-        <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10 text-pretty">
-          Every morning is a ritual. We craft drinks that slow you down, warm you up,
-          and remind you that the best moments happen before the world wakes up.
-        </p>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/78 md:text-lg">
+            A calm, modern cafe experience shaped by early hours, thoughtful drinks, and a smoother
+            digital journey from first scroll to first sip.
+          </p>
+        </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="reveal reveal-visible mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row" style={{ transitionDelay: "140ms" }}>
           <Link
             href="#menu"
-            className="w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-accent text-accent-foreground font-medium text-sm tracking-wide hover:opacity-90 transition-opacity"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-semibold tracking-[0.08em] text-primary-foreground shadow-[0_28px_40px_-24px_rgba(50,81,163,0.95)] hover:-translate-y-0.5 hover:bg-primary/92 sm:w-auto"
           >
             View Menu
+            <ArrowRight size={16} />
           </Link>
           <Link
-            href="#visit"
-            className="w-full sm:w-auto text-center px-8 py-3.5 rounded-full border border-white/60 text-white font-medium text-sm tracking-wide hover:bg-white/10 transition-colors"
+            href="#custom-drink"
+            className="inline-flex w-full items-center justify-center rounded-full border border-white/28 bg-white/8 px-8 py-3.5 text-sm font-semibold tracking-[0.08em] text-white backdrop-blur-sm hover:bg-white/14 sm:w-auto"
           >
-            Visit Us
+            Explore Drink Builder
           </Link>
+        </div>
+
+        <div className="reveal reveal-visible mt-12 flex flex-wrap items-center justify-center gap-3 text-left" style={{ transitionDelay: "220ms" }}>
+          {["Smooth interactions", "Minimal brand palette", "AI-ready direction"].map((item) => (
+            <div
+              key={item}
+              className="rounded-full border border-white/18 bg-white/8 px-4 py-2 text-sm text-white/80 backdrop-blur-sm"
+            >
+              {item}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50">
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-10 bg-white/30 animate-pulse" />
+      <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/55">
+        <span className="text-xs font-medium uppercase tracking-[0.3em]">Scroll</span>
+        <div className="relative h-12 w-px overflow-hidden bg-white/20">
+          <div className="absolute inset-x-0 top-0 h-1/2 animate-[pulse_1.8s_ease-in-out_infinite] bg-accent" />
+        </div>
       </div>
     </section>
   )

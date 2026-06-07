@@ -16,12 +16,16 @@ const dmSerifDisplay = DM_Serif_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Sayu Café — Start your day early, the Sayu way.',
-  description: 'Sayu Café is a warm, minimal café experience crafted for early mornings. Specialty coffee, matcha, and seasonal drinks made with care.',
-  generator: 'v0.app',
-  keywords: ['coffee', 'café', 'matcha', 'specialty coffee', 'Sayu', 'morning café'],
+  title: 'Sayu Cafe | Start your day early, the Sayu way.',
+  description:
+    'Sayu Cafe is a warm, minimal cafe experience crafted for early mornings. Specialty coffee, matcha, and seasonal drinks made with care.',
+  keywords: ['coffee', 'cafe', 'matcha', 'specialty coffee', 'Sayu', 'morning cafe'],
+  icons: {
+    icon: '/icon.svg',
+    apple: '/apple-icon.png',
+  },
   openGraph: {
-    title: 'Sayu Café',
+    title: 'Sayu Cafe',
     description: 'Start your day early, the Sayu way.',
     type: 'website',
   },

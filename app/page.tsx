@@ -6,6 +6,7 @@ import { MenuPreview } from "@/components/menu-preview"
 import { VisitUs } from "@/components/visit-us"
 import { Gallery } from "@/components/gallery"
 import { Footer } from "@/components/footer"
+import { CustomDrink } from "@/components/custom-drink"
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <FeaturedDrinks />
       <About />
       <MenuPreview />
+      <CustomDrink />
       <VisitUs />
       <Gallery />
       <Footer />
