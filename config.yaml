@@ -1,0 +1,87 @@
+Create a modern, responsive coffee shop website using Next.js (App Router) and TypeScript with Tailwind CSS and shadcn/ui components.
+
+The design should be inspired by premium coffee brands like Starbucks, but more minimal, warm, and personal. Avoid overly corporate layouts.
+
+Brand name: Sayu Café
+Tagline: “Start your day early, the Sayu way.”
+
+Brand personality:
+
+Warm and welcoming
+Genuine and authentic
+Slightly playful but professional
+
+Design direction:
+
+Feel like a calm morning café experience
+Clean, minimalist layout with soft spacing
+Not cluttered, not overly corporate
+Emphasis on imagery and atmosphere
+
+Color palette:
+
+#ffffff (primary background)
+#3251a3 (accent)
+#ffc417 (highlight)
+#000000 (text)
+
+Typography:
+
+Elegant, modern sans-serif
+Good readability on mobile
+
+IMPORTANT:
+
+Use placeholder images but structure the code so images are EASY to replace (use clear image props or constants)
+Use reusable components for sections (Hero, Menu, About, etc.)
+Optimize for mobile-first design
+
+Create the following sections:
+
+HERO SECTION
+Full-width image or video background
+Overlay with:
+“Start your day early, the Sayu way.”
+Short subtext about coffee and experience
+CTA buttons:
+View Menu
+Visit Us
+FEATURED DRINKS SECTION
+3–4 cards (e.g., Matcha Latte, Signature Coffee, Seasonal Drink)
+Image + name + short description
+Clean card layout with hover effects
+ABOUT SAYU SECTION
+Short story:
+“Sayu means early…”
+Focus on mornings, comfort, and experience
+Include image + text layout (split section)
+MENU PREVIEW SECTION
+Simple, easy-to-scan layout
+Categories:
+Coffee
+Matcha
+Pastries
+Include CTA: “View Full Menu”
+VISIT US SECTION
+Map placeholder (embed-ready container)
+Address, hours, and contact info
+Clean layout (grid or card style)
+GALLERY / SOCIAL PROOF
+Grid of images (Instagram-style)
+Should feel real and inviting
+FOOTER
+Logo / Name
+Navigation links
+Social links
+Small brand statement
+
+Technical requirements:
+
+Use functional components
+Separate sections into reusable components
+Use Tailwind for styling
+Clean spacing and consistent padding
+Add subtle hover and transition effects
+Ensure fast loading and clean structure
+
+Make the overall experience feel warm, calm, and inviting — like stepping into a cozy café in the morning.

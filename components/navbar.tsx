@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 
@@ -14,83 +15,122 @@ const NAV_LINKS = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => {
+      const currentY = window.scrollY
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+
+      setScrolled(currentY > 32)
+      setScrollProgress(maxScroll > 0 ? currentY / maxScroll : 0)
+    }
+
+    onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  useEffect(() => {
+    if (!isOpen) {
+      return
+    }
+
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false)
+      }
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [isOpen])
+
+  const headerState = scrolled
+    ? "border-primary/10 bg-white/80 shadow-[0_24px_50px_-38px_rgba(9,9,11,0.5)] backdrop-blur-xl"
+    : "bg-transparent"
+
+  const textState = scrolled ? "text-foreground" : "text-white"
+  const logoSrc = scrolled ? "/images/logos/sayu-blue.png" : "/images/logos/sayu-white.png"
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
-        {/* Logo */}
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerState}`}>
+      <div
+        className="absolute inset-x-0 top-0 h-0.5 origin-left bg-gradient-to-r from-accent via-primary to-primary"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+      />
+
+      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-6 md:h-22 md:px-10">
         <Link
           href="#"
-          className={`font-serif text-xl md:text-2xl tracking-tight transition-colors ${
-            scrolled ? "text-foreground" : "text-white"
-          }`}
+          className="group relative flex items-center rounded-full px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+          aria-label="Sayu Cafe home"
         >
-          Sayu Café
+          <Image
+            src={logoSrc}
+            alt="Sayu Cafe logo"
+            width={220}
+            height={80}
+            priority
+            className="h-7 w-24 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.14)] transition-transform duration-300 group-hover:scale-[1.02] sm:h-8 sm:w-40 md:h-8 md:w-48"
+          />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium tracking-wide transition-colors hover:opacity-70 ${
-                scrolled ? "text-foreground" : "text-white"
-              }`}
-            >
-              {link.label}
-            </Link>
+        <nav className="hidden items-center md:flex">
+          {NAV_LINKS.map((link, index) => (
+            <div key={link.href} className="flex items-center">
+              <Link href={link.href} className={`nav-link px-4 py-2 ${textState}`}>
+                {link.label}
+              </Link>
+              {index < NAV_LINKS.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className={`h-1.5 w-1.5 rounded-full ${scrolled ? "bg-primary/35" : "bg-white/35"}`}
+                />
+              )}
+            </div>
           ))}
           <Link
-            href="#visit"
-            className="text-sm font-medium px-5 py-2 rounded-full bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
+            href="#custom-drink"
+            className="ml-5 rounded-full bg-primary px-5 py-2.5 text-sm font-medium tracking-[0.08em] text-primary-foreground shadow-[0_20px_35px_-24px_rgba(50,81,163,0.95)] hover:-translate-y-0.5 hover:bg-primary/92"
           >
-            Order Now
+            Build Your Drink
           </Link>
         </nav>
 
-        {/* Mobile hamburger */}
         <button
-          className={`md:hidden transition-colors ${scrolled ? "text-foreground" : "text-white"}`}
-          onClick={() => setIsOpen(!isOpen)}
+          className={`rounded-full border px-3 py-3 md:hidden ${
+            scrolled
+              ? "border-primary/12 bg-white/90 text-foreground shadow-[0_16px_40px_-28px_rgba(9,9,11,0.55)]"
+              : "border-white/20 bg-white/10 text-white backdrop-blur-sm"
+          }`}
+          onClick={() => setIsOpen((open) => !open)}
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
-          {isOpen ? <X size={22} /> : <Menu size={22} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-background/98 backdrop-blur-md border-t border-border">
-          <nav className="flex flex-col px-6 py-6 gap-5">
+        <div className="border-t border-primary/10 bg-white/92 px-6 pb-6 pt-4 backdrop-blur-xl md:hidden">
+          <nav className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground text-base font-medium"
+                className="rounded-2xl px-4 py-3 text-sm font-medium uppercase tracking-[0.14em] text-foreground hover:bg-secondary"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href="#visit"
-              className="mt-2 text-center text-sm font-medium px-5 py-3 rounded-full bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
+              href="#custom-drink"
+              className="mt-2 rounded-2xl bg-primary px-4 py-3 text-center text-sm font-medium uppercase tracking-[0.12em] text-primary-foreground"
               onClick={() => setIsOpen(false)}
             >
-              Order Now
+              Build Your Drink
             </Link>
           </nav>
         </div>

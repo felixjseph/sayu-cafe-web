@@ -1,80 +1,74 @@
 import Image from "next/image"
-import { Instagram } from "lucide-react"
+import { ArrowRight, Instagram } from "lucide-react"
+import { Reveal } from "@/components/reveal"
 
-// To update gallery images, edit the GALLERY_IMAGES array below
 const GALLERY_IMAGES = [
-  { src: "/images/gallery-1.jpg", alt: "Morning coffee by the window at Sayu Café" },
-  { src: "/images/gallery-2.jpg", alt: "Close-up latte art at Sayu Café" },
-  { src: "/images/gallery-3.jpg", alt: "Fresh pastries at Sayu Café" },
-  { src: "/images/gallery-4.jpg", alt: "Sayu Café interior" },
+  { src: "/images/gallery-1.jpg", alt: "Morning coffee by the window at Sayu Cafe" },
+  { src: "/images/gallery-2.jpg", alt: "Close-up latte art at Sayu Cafe" },
+  { src: "/images/gallery-3.jpg", alt: "Fresh pastries at Sayu Cafe" },
+  { src: "/images/gallery-4.jpg", alt: "Sayu Cafe interior" },
   { src: "/images/gallery-5.jpg", alt: "Morning flat lay with coffee and journal" },
-  { src: "/images/gallery-6.jpg", alt: "Barista at Sayu Café" },
+  { src: "/images/gallery-6.jpg", alt: "Barista at Sayu Cafe" },
 ]
 
 export function Gallery() {
   return (
-    <section id="gallery" className="bg-secondary py-24 md:py-32 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+    <section id="gallery" className="section-shell bg-background">
+      <div className="section-frame">
+        <Reveal className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <span className="text-xs font-medium tracking-[0.2em] uppercase text-primary mb-3 block">
-              Our World
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl text-foreground text-balance leading-tight">
-              Mornings at Sayu
-            </h2>
+            <span className="section-label">Our World</span>
+            <h2 className="section-title">Mornings at Sayu</h2>
           </div>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/sayucafe.cebu/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:opacity-70 transition-opacity"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary hover:opacity-72"
           >
             <Instagram size={16} />
             @sayucafe
           </a>
-        </div>
+        </Reveal>
 
-        {/* Instagram-style grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-          {GALLERY_IMAGES.map((img, i) => (
-            <div
-              key={i}
-              className={`relative overflow-hidden rounded-xl group cursor-pointer ${
-                i === 0 ? "col-span-2 md:col-span-1 row-span-2 h-64 md:h-auto" : "h-44 md:h-52"
-              }`}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300 flex items-center justify-center">
-                <Instagram
-                  size={24}
-                  className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+          {GALLERY_IMAGES.map((img, index) => (
+            <Reveal key={img.src} delay={index * 70}>
+              <div
+                className={`group relative cursor-pointer overflow-hidden rounded-[1.5rem] ${
+                  index === 0 ? "col-span-2 h-64 md:col-span-1 md:row-span-2 md:h-full" : "h-44 md:h-52"
+                }`}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 50vw, 33vw"
                 />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,9,11,0.02),rgba(9,9,11,0.34))] opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="rounded-full border border-white/20 bg-white/10 p-3 text-white opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <Instagram size={20} />
+                  </div>
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        {/* Instagram CTA */}
-        <div className="mt-10 text-center">
+        <Reveal className="mt-12 flex justify-center" delay={360}>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/sayucafe.cebu/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-border bg-card text-card-foreground text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary/12 bg-white px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-primary shadow-[0_22px_48px_-34px_rgba(9,9,11,0.36)] hover:-translate-y-0.5 hover:border-primary/24 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_28px_54px_-34px_rgba(50,81,163,0.82)] sm:w-auto"
           >
-            <Instagram size={16} />
-            Follow us on Instagram
+            <Instagram size={17} />
+            Follow Us on Instagram
+            <ArrowRight size={16} />
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

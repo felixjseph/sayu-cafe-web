@@ -1,18 +1,18 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ClipboardList } from "lucide-react"
+import { Reveal } from "@/components/reveal"
 
-// To update menu items, edit the MENU_CATEGORIES array below
 const MENU_CATEGORIES = [
   {
     id: "coffee",
     name: "Coffee",
     emoji: "☕",
     items: [
-      { name: "Pour Over", price: "$5.50", note: "Single origin" },
-      { name: "Espresso", price: "$3.50", note: "Double shot" },
-      { name: "Cortado", price: "$4.50", note: "Equal parts" },
-      { name: "Flat White", price: "$5.00", note: "Oat / Whole" },
-      { name: "Cold Brew", price: "$5.50", note: "18-hr steep" },
+      { name: "Espresso", price: "₱70", note: "Double shot" },
+      { name: "Pour Over", price: "₱150", note: "Single origin" },
+      { name: "Cortado", price: "₱110", note: "Equal parts" },
+      { name: "Flat White", price: "₱120", note: "Oat / Whole" },
+      { name: "Cafe Latte", price: "₱120", note: "18-hr steep" },
     ],
   },
   {
@@ -20,10 +20,10 @@ const MENU_CATEGORIES = [
     name: "Matcha",
     emoji: "🍵",
     items: [
-      { name: "Matcha Latte", price: "$6.00", note: "Ceremonial grade" },
-      { name: "Iced Matcha", price: "$6.00", note: "Oat milk" },
-      { name: "Matcha Espresso", price: "$6.50", note: "Fusion" },
-      { name: "Hojicha Latte", price: "$5.50", note: "Roasted" },
+      { name: "Matcha Latte", price: "₱150", note: "Ceremonial grade" },
+      { name: "Iced Matcha", price: "₱150", note: "Oat milk" },
+      { name: "Matcha Espresso", price: "₱185", note: "Fusion" },
+      { name: "Hojicha Latte", price: "₱165", note: "Roasted" },
     ],
   },
   {
@@ -31,74 +31,73 @@ const MENU_CATEGORIES = [
     name: "Pastries",
     emoji: "🥐",
     items: [
-      { name: "Butter Croissant", price: "$4.00", note: "Baked daily" },
-      { name: "Almond Danish", price: "$4.50", note: "House made" },
-      { name: "Sesame Bagel", price: "$3.50", note: "With cream cheese" },
-      { name: "Morning Bun", price: "$4.00", note: "Orange zest" },
-      { name: "Banana Bread", price: "$3.50", note: "Seasonal spice" },
+      { name: "Butter Croissant", price: "₱90", note: "Baked daily" },
+      { name: "Double Choco Chip Cookie", price: "₱90", note: "House made" },
+      { name: "Burnt Basque Cheesecake", price: "₱150", note: "House made" },
+      { name: "Red Velvet Cheesecake", price: "₱175", note: "House made" },
+      { name: "Brookies", price: "₱85", note: "Fusion" },
     ],
   },
 ]
 
 export function MenuPreview() {
   return (
-    <section id="menu" className="bg-secondary py-24 md:py-32 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+    <section id="menu" className="section-shell bg-background">
+      <div className="section-frame">
+        <Reveal className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-xs font-medium tracking-[0.2em] uppercase text-primary mb-3 block">
-              What We Serve
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl text-foreground text-balance leading-tight">
-              Simple. Honest. Delicious.
-            </h2>
+            <span className="section-label">What We Serve</span>
+            <h2 className="section-title">Simple. Honest. Delicious.</h2>
           </div>
           <Link
-            href="#menu"
-            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all"
+            href="#custom-drink"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary hover:gap-3"
           >
-            View Full Menu <ArrowRight size={16} />
+            Explore Custom Drinks <ArrowRight size={16} />
           </Link>
-        </div>
+        </Reveal>
 
-        {/* Menu grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {MENU_CATEGORIES.map((category) => (
-            <div key={category.id} className="bg-card rounded-2xl p-7 border border-border">
-              {/* Category header */}
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border">
-                <span className="text-2xl" role="img" aria-label={category.name}>
-                  {category.emoji}
-                </span>
-                <h3 className="font-serif text-xl text-card-foreground">{category.name}</h3>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {MENU_CATEGORIES.map((category, index) => (
+            <Reveal key={category.id} delay={index * 90}>
+              <div className="panel-card p-7">
+                <div className="mb-6 flex items-center gap-3 border-b border-primary/10 pb-4">
+                  <span className="text-2xl" role="img" aria-label={category.name}>
+                    {category.emoji}
+                  </span>
+                  <h3 className="font-serif text-2xl text-card-foreground">{category.name}</h3>
+                </div>
+
+                <ul className="space-y-4">
+                  {category.items.map((item) => (
+                    <li key={item.name} className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-sm font-semibold text-card-foreground">{item.name}</p>
+                        <p className="mt-0.5 text-xs uppercase tracking-[0.12em] text-muted-foreground">
+                          {item.note}
+                        </p>
+                      </div>
+                      <span className="shrink-0 text-sm font-semibold text-primary">{item.price}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-
-              {/* Items */}
-              <ul className="space-y-4">
-                {category.items.map((item) => (
-                  <li key={item.name} className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-sm font-medium text-card-foreground">{item.name}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">{item.note}</p>
-                    </div>
-                    <span className="text-sm font-medium text-primary shrink-0">{item.price}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
+        <Reveal className="mt-12 flex justify-center" delay={260}>
           <Link
-            href="#menu"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+            href="https://www.facebook.com/sayucafe"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary/12 bg-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-primary-foreground shadow-[0_24px_42px_-28px_rgba(50,81,163,0.9)] hover:-translate-y-0.5 hover:bg-primary/92 hover:shadow-[0_30px_52px_-30px_rgba(50,81,163,0.95)] sm:w-auto"
           >
-            View Full Menu <ArrowRight size={16} />
+            <ClipboardList size={17} />
+            View Full Menu
+            <ArrowRight size={16} />
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

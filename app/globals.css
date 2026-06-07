@@ -1,44 +1,44 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Sayu Café Brand Tokens */
   --brand-blue: #3251a3;
   --brand-yellow: #ffc417;
-  --brand-cream: #faf8f4;
-  --brand-warm: #f5f0e8;
+  --brand-black: #09090b;
+  --brand-white: #ffffff;
+  --brand-sky: #eef3ff;
 
-  --background: oklch(1 0 0);          /* #ffffff */
-  --foreground: oklch(0.08 0 0);       /* near-black */
-  --card: oklch(0.98 0.005 80);        /* warm off-white */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0% 0 0);
+  --card: oklch(0.99 0.01 255);
   --card-foreground: oklch(0.08 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.08 0 0);
-  --primary: oklch(0.38 0.13 265);     /* #3251a3 blue */
+  --primary: oklch(0.46 0.15 266);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.02 80);    /* warm cream */
+  --secondary: oklch(0.97 0.02 258);
   --secondary-foreground: oklch(0.08 0 0);
-  --muted: oklch(0.96 0.01 80);
+  --muted: oklch(0.97 0.01 258);
   --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.83 0.17 85);       /* #ffc417 yellow */
+  --accent: oklch(0.87 0.17 89);
   --accent-foreground: oklch(0.08 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.9 0.01 80);
-  --input: oklch(0.9 0.01 80);
-  --ring: oklch(0.38 0.13 265);
-  --radius: 0.5rem;
+  --border: oklch(0.91 0.012 258);
+  --input: oklch(0.91 0.012 258);
+  --ring: oklch(0.46 0.15 266);
+  --radius: 1rem;
 
-  --sidebar: oklch(0.98 0.005 80);
+  --sidebar: oklch(0.99 0.01 258);
   --sidebar-foreground: oklch(0.08 0 0);
-  --sidebar-primary: oklch(0.38 0.13 265);
+  --sidebar-primary: oklch(0.46 0.15 266);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.83 0.17 85);
+  --sidebar-accent: oklch(0.87 0.17 89);
   --sidebar-accent-foreground: oklch(0.08 0 0);
-  --sidebar-border: oklch(0.9 0.01 80);
-  --sidebar-ring: oklch(0.38 0.13 265);
+  --sidebar-border: oklch(0.91 0.012 258);
+  --sidebar-ring: oklch(0.46 0.15 266);
 }
 
 .dark {
@@ -119,10 +119,115 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
+  *::selection {
+    background: color-mix(in srgb, var(--brand-blue) 18%, white);
+    color: var(--brand-black);
+  }
+
   body {
     @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    transition:
+      color 220ms ease,
+      background-color 220ms ease,
+      border-color 220ms ease,
+      opacity 220ms ease,
+      transform 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  img {
+    backface-visibility: hidden;
+  }
+}
+
+@layer utilities {
+  .section-shell {
+    @apply px-6 py-24 md:px-10 md:py-32;
+  }
+
+  .section-frame {
+    @apply mx-auto max-w-6xl;
+  }
+
+  .section-label {
+    @apply inline-block text-xs font-semibold uppercase tracking-[0.24em] text-primary;
+  }
+
+  .section-title {
+    @apply mt-3 font-serif text-4xl leading-tight text-foreground text-balance md:text-5xl;
+  }
+
+  .section-copy {
+    @apply text-sm leading-relaxed text-muted-foreground md:text-base;
+  }
+
+  .panel-card {
+    @apply relative rounded-[2rem] border border-primary/10 bg-white/88 shadow-[0_28px_70px_-42px_rgba(9,9,11,0.3)] backdrop-blur-sm;
+  }
+
+  .soft-card {
+    @apply rounded-[1.5rem] border border-primary/10 bg-secondary/55 shadow-[0_18px_50px_-40px_rgba(50,81,163,0.55)] backdrop-blur-sm;
+  }
+
+  .nav-link {
+    @apply relative text-sm font-medium tracking-[0.14em] uppercase;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    @apply scale-x-100;
+  }
+
+  .ingredient-pill {
+    @apply rounded-full border border-primary/15 bg-secondary px-4 py-2 text-sm font-medium text-foreground shadow-[0_10px_30px_-24px_rgba(50,81,163,0.6)];
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-visible,
+  a,
+  button,
+  [role="button"] {
+    transition: none !important;
+    transform: none !important;
   }
 }
