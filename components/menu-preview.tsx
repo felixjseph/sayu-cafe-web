@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ClipboardList } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 const MENU_CATEGORIES = [
@@ -85,6 +85,19 @@ export function MenuPreview() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-12 flex justify-center" delay={260}>
+          <Link
+            href="https://www.facebook.com/sayucafe"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary/12 bg-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-primary-foreground shadow-[0_24px_42px_-28px_rgba(50,81,163,0.9)] hover:-translate-y-0.5 hover:bg-primary/92 hover:shadow-[0_30px_52px_-30px_rgba(50,81,163,0.95)] sm:w-auto"
+          >
+            <ClipboardList size={17} />
+            View Full Menu
+            <ArrowRight size={16} />
+          </Link>
+        </Reveal>
       </div>
     </section>
   )

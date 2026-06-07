@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Instagram } from "lucide-react"
+import { ArrowRight, Instagram } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 const GALLERY_IMAGES = [
@@ -21,7 +21,7 @@ export function Gallery() {
             <h2 className="section-title">Mornings at Sayu</h2>
           </div>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/sayucafe.cebu/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary hover:opacity-72"
@@ -56,6 +56,19 @@ export function Gallery() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-12 flex justify-center" delay={360}>
+          <a
+            href="https://www.instagram.com/sayucafe.cebu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary/12 bg-white px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-primary shadow-[0_22px_48px_-34px_rgba(9,9,11,0.36)] hover:-translate-y-0.5 hover:border-primary/24 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_28px_54px_-34px_rgba(50,81,163,0.82)] sm:w-auto"
+          >
+            <Instagram size={17} />
+            Follow Us on Instagram
+            <ArrowRight size={16} />
+          </a>
+        </Reveal>
       </div>
     </section>
   )

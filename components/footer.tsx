@@ -43,7 +43,7 @@ export function Footer() {
               alt="Sayu Cafe logo"
               width={220}
               height={80}
-              className="h-16 w-25 object-contain"
+              className="h-14 w-36 object-contain md:h-16 md:w-25"
             />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/68">
               Start your day early, the Sayu way. Specialty coffee and matcha crafted for quiet mornings.

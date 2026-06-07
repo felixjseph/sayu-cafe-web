@@ -58,12 +58,20 @@ export function CustomDrink() {
 
               <div className="mt-8 grid gap-4 md:grid-cols-3">
                 {STEPS.map(({ icon: Icon, title, description }, index) => (
-                  <div key={title} className="soft-card p-5" style={{ transitionDelay: `${index * 90}ms` }}>
-                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-[0_16px_28px_-18px_rgba(50,81,163,0.8)]">
+                  <div
+                    key={title}
+                    className="group soft-card p-5 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-primary/24 hover:bg-white hover:shadow-[0_26px_62px_-42px_rgba(50,81,163,0.75)]"
+                    style={{ transitionDelay: `${index * 70}ms` }}
+                  >
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-[0_16px_28px_-18px_rgba(50,81,163,0.8)] transition-all duration-500 ease-out group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:bg-accent group-hover:text-accent-foreground group-hover:shadow-[0_20px_36px_-18px_rgba(255,196,23,0.8)]">
                       <Icon size={18} />
                     </div>
-                    <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                    <h3 className="text-lg font-semibold text-foreground transition-colors duration-500 group-hover:text-primary">
+                      {title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-foreground/70">
+                      {description}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -80,8 +88,8 @@ export function CustomDrink() {
               {INGREDIENTS.map((ingredient, index) => (
                 <span
                   key={ingredient}
-                  className="ingredient-pill"
-                  style={{ transitionDelay: `${index * 40}ms` }}
+                  className="ingredient-pill transition-all duration-500 ease-out hover:-translate-y-0.5 hover:border-primary/28 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_18px_36px_-26px_rgba(50,81,163,0.85)]"
+                  style={{ transitionDelay: `${index * 25}ms` }}
                 >
                   {ingredient}
                 </span>

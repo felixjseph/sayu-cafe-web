@@ -72,7 +72,7 @@ export function Navbar() {
             width={220}
             height={80}
             priority
-            className="h-16 w-4 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.14)] transition-transform duration-300 group-hover:scale-[1.02] md:h-8 md:w-48"
+            className="h-7 w-24 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.14)] transition-transform duration-300 group-hover:scale-[1.02] sm:h-8 sm:w-40 md:h-8 md:w-48"
           />
         </Link>
 
