@@ -1,16 +1,6 @@
-import { MapPin, Clock, Phone } from "lucide-react"
+import { MapPin, Clock, Facebook, Navigation } from "lucide-react"
 import { Reveal } from "@/components/reveal"
-
-const LOCATION = {
-  address: "South Poblacion San Fernando, Cebu 6018",
-  city: "Cebu, Philippines 6018",
-  phone: "+63 9432 469 897",
-  email: "sayucafe.cebu@gmail.com",
-}
-
-const HOURS = [
-  { days: "Monday - Sunday", hours: "9:00 am - 10:00 pm" }
-]
+import { EXTERNAL_LINKS, HOURS, LOCATION } from "@/lib/site"
 
 export function VisitUs() {
   return (
@@ -21,29 +11,28 @@ export function VisitUs() {
           <h2 className="section-title">Come say good morning.</h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-          <Reveal delay={60}>
-            <div className="panel-card flex min-h-72 flex-col items-center justify-center gap-3 overflow-hidden p-10 text-center">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(50,81,163,0.14),transparent_45%)]" />
-              <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_22px_40px_-24px_rgba(50,81,163,0.95)]">
-                <MapPin size={26} />
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-8">
+          <Reveal className="h-full" delay={60}>
+            <div className="map-panel panel-card flex h-full min-w-0 flex-col overflow-hidden">
+              <div className="min-h-80 flex-1 overflow-hidden sm:min-h-[360px]">
+                <iframe
+                  src={LOCATION.mapEmbedUrl}
+                  title="Google Map showing the Sayu Café listing in San Fernando, Cebu"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="h-full min-h-80 w-full border-0 sm:min-h-[360px]"
+                />
               </div>
-              <p className="relative text-lg font-semibold text-foreground">{LOCATION.address}</p>
-              <p className="relative text-sm text-muted-foreground">{LOCATION.city}</p>
-              <a
-                href="https://maps.app.goo.gl/pyGvRWvxKDpN7kMT6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative mt-3 rounded-full border border-primary/15 px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-primary hover:bg-primary hover:text-primary-foreground"
-              >
-                Open in Google Maps
-              </a>
+              <p className="px-6 py-5 text-sm leading-relaxed text-muted-foreground">
+                Map not loading? <a href={LOCATION.mapUrl} target="_blank" rel="noopener noreferrer" className="action-link compact-link font-semibold underline underline-offset-4">Open the Sayu Café pin in Google Maps</a>.
+              </p>
             </div>
           </Reveal>
 
-          <div className="flex flex-col gap-6">
-            <Reveal delay={120}>
-              <div className="panel-card flex gap-4 p-6">
+          <div className="flex min-w-0 flex-col gap-4">
+            <Reveal className="flex-1" delay={120}>
+              <div className="panel-card flex h-full gap-4 p-6">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                   <MapPin size={18} />
                 </div>
@@ -58,8 +47,8 @@ export function VisitUs() {
               </div>
             </Reveal>
 
-            <Reveal delay={180}>
-              <div className="panel-card flex gap-4 p-6">
+            <Reveal className="flex-1" delay={180}>
+              <div className="panel-card flex h-full gap-4 p-6">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                   <Clock size={18} />
                 </div>
@@ -77,25 +66,36 @@ export function VisitUs() {
               </div>
             </Reveal>
 
-            <Reveal delay={240}>
-              <div className="panel-card flex gap-4 p-6">
+            <Reveal className="flex-1" delay={240}>
+              <div className="panel-card flex h-full gap-4 p-6">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                  <Phone size={18} />
+                  <Facebook size={18} aria-hidden="true" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-card-foreground">Contact</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    <a href={`tel:${LOCATION.phone}`} className="hover:text-primary">
-                      {LOCATION.phone}
+                    <a href={EXTERNAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="action-link compact-link font-medium">
+                      Sayu Café on Facebook
                     </a>
                   </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    <a href={`mailto:${LOCATION.email}`} className="hover:text-primary">
+                  <p className="mt-1 text-sm text-muted-foreground break-words">
+                    <a href={`mailto:${LOCATION.email}`} className="action-link compact-link">
                       {LOCATION.email}
                     </a>
                   </p>
                 </div>
               </div>
+            </Reveal>
+            <Reveal delay={300}>
+              <a
+                href={LOCATION.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="action-button action-primary w-full rounded-full px-6 py-3.5 text-sm font-semibold"
+              >
+                <Navigation size={17} aria-hidden="true" />
+                Get Directions to Sayu Café
+              </a>
             </Reveal>
           </div>
         </div>

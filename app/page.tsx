@@ -7,19 +7,46 @@ import { VisitUs } from "@/components/visit-us"
 import { Gallery } from "@/components/gallery"
 import { Footer } from "@/components/footer"
 import { CustomDrink } from "@/components/custom-drink"
+import { EXTERNAL_LINKS, LOCATION } from "@/lib/site"
+
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  name: "Sayu Café",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "San Fernando",
+    addressRegion: "Cebu",
+    postalCode: "6018",
+    addressCountry: "PH",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: LOCATION.latitude,
+    longitude: LOCATION.longitude,
+  },
+  hasMap: LOCATION.mapUrl,
+  sameAs: [EXTERNAL_LINKS.facebook],
+}
 
 export default function Home() {
   return (
-    <main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness).replace(/</g, "\\u003c") }}
+      />
       <Navbar />
-      <Hero />
-      <FeaturedDrinks />
-      <About />
-      <MenuPreview />
-      <CustomDrink />
-      <VisitUs />
-      <Gallery />
+      <main>
+        <Hero />
+        <FeaturedDrinks />
+        <About />
+        <MenuPreview />
+        <CustomDrink />
+        <VisitUs />
+        <Gallery />
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }
