@@ -7,10 +7,9 @@ Live socials: [@sayucafe.cebu](https://www.instagram.com/sayucafe.cebu/).
 ## Tech
 
 - [Next.js 16](https://nextjs.org) (App Router) + React 19
-- Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com) primitives
+- Tailwind CSS v4
 - TypeScript
 - [Vercel Analytics](https://vercel.com/analytics)
-- Bootstrapped and continuously synced from [v0](https://v0.app)
 
 ## Getting started
 
@@ -27,6 +26,8 @@ Other scripts:
 npm run build   # production build
 npm run start   # serve the production build
 npm run lint    # eslint
+npm run typecheck # TypeScript
+npm run check   # lint, typecheck, and production build
 ```
 
 ## Project layout
@@ -34,14 +35,12 @@ npm run lint    # eslint
 ```
 app/           # App Router entry (layout.tsx, page.tsx, globals.css)
 components/    # Section components (hero, menu-preview, about, gallery, ...)
-components/ui/ # shadcn/ui primitives
-hooks/         # Shared React hooks
-lib/           # Utilities (cn, etc.)
+lib/           # Shared site data and configuration
 public/        # Static assets — logos, drink and gallery photos
 ```
 
-## Deploying
+## Visitor journey
 
-Every merge to `main` deploys automatically via Vercel. The project is also linked to v0, so edits made there push commits back to this repo.
+Visitors can browse the menu, then send a pre-order request through Sayu Café's Facebook Messenger. The café confirms availability, total, and pickup details in the conversation; the website does not take payment or confirm orders. The Visit Us section uses the café's Google Maps listing for its embedded map, fallback link, and directions route.
 
-- [Continue on v0 →](https://v0.app/chat/projects/prj_KhFoOKtdoR39rHj2NtjRHP01NmVk)
+The site uses Lenis for restrained desktop wheel scrolling. Touch momentum stays native, and reduced-motion preferences disable scroll smoothing and decorative animation.

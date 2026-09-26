@@ -19,6 +19,11 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
       return
     }
 
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const frame = window.requestAnimationFrame(() => setIsVisible(true))
+      return () => window.cancelAnimationFrame(frame)
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) {
@@ -29,8 +34,8 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
         observer.disconnect()
       },
       {
-        threshold: 0.2,
-        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px -4% 0px",
       },
     )
 

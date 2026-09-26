@@ -1,6 +1,6 @@
-import Link from "next/link"
 import { ArrowRight, ClipboardList } from "lucide-react"
 import { Reveal } from "@/components/reveal"
+import { EXTERNAL_LINKS } from "@/lib/site"
 
 const MENU_CATEGORIES = [
   {
@@ -49,16 +49,18 @@ export function MenuPreview() {
             <span className="section-label">What We Serve</span>
             <h2 className="section-title">Simple. Honest. Delicious.</h2>
           </div>
-          <Link
-            href="#custom-drink"
-            className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary transition-all duration-300 ease-out hover:-translate-y-0.5 hover:text-primary/86"
+          <a
+            href={EXTERNAL_LINKS.messenger}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="action-link group text-sm font-semibold uppercase tracking-[0.14em]"
           >
             <span className="relative">
-              Explore Custom Drinks
-              <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              Pre-order on Messenger
+              <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100" />
             </span>
-            <ArrowRight size={16} className="transition-transform duration-300 ease-out group-hover:translate-x-1" />
-          </Link>
+            <ArrowRight size={16} aria-hidden="true" className="action-arrow" />
+          </a>
         </Reveal>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -90,17 +92,21 @@ export function MenuPreview() {
           ))}
         </div>
 
+        <p className="mt-8 text-center text-sm leading-relaxed text-muted-foreground">
+          Send your request on Messenger. Sayu will confirm prices, availability, and pickup details before your order is placed.
+        </p>
+
         <Reveal className="mt-12 flex justify-center" delay={260}>
-          <Link
-            href="https://drive.google.com/drive/folders/1FwD2sK_wSdAutekcSr5_9Ou630CZUJvj?usp=sharing"
+          <a
+            href={EXTERNAL_LINKS.menu}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary/12 bg-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-primary-foreground shadow-[0_24px_42px_-28px_rgba(50,81,163,0.9)] hover:-translate-y-0.5 hover:bg-primary/92 hover:shadow-[0_30px_52px_-30px_rgba(50,81,163,0.95)] sm:w-auto"
+            className="action-button action-primary w-full rounded-full px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] sm:w-auto"
           >
             <ClipboardList size={17} />
             View Full Menu
             <ArrowRight size={16} />
-          </Link>
+          </a>
         </Reveal>
       </div>
     </section>

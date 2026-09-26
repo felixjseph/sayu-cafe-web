@@ -1,7 +1,7 @@
 import Image from "next/image"
-import Link from "next/link"
 import type { SVGProps } from "react"
 import { Instagram, Facebook } from "lucide-react"
+import { EXTERNAL_LINKS, HOURS, LOCATION, NAV_LINKS } from "@/lib/site"
 
 function TikTokIcon({ size = 16, ...props }: SVGProps<SVGSVGElement> & { size?: number }) {
   return (
@@ -19,17 +19,10 @@ function TikTokIcon({ size = 16, ...props }: SVGProps<SVGSVGElement> & { size?: 
   )
 }
 
-const NAV_LINKS = [
-  { label: "Menu", href: "#menu" },
-  { label: "About", href: "#about" },
-  { label: "Visit Us", href: "#visit" },
-  { label: "Gallery", href: "#gallery" },
-]
-
 const SOCIAL_LINKS = [
-  { icon: Facebook, href: "https://www.facebook.com/sayucafe", label: "Facebook" },
-  { icon: Instagram, href: "https://www.instagram.com/sayucafe.cebu/", label: "Instagram" },
-  { icon: TikTokIcon, href: "https://www.tiktok.com/@sayucafe.cebu", label: "TikTok" },
+  { icon: Facebook, href: EXTERNAL_LINKS.facebook, label: "Facebook" },
+  { icon: Instagram, href: EXTERNAL_LINKS.instagram, label: "Instagram" },
+  { icon: TikTokIcon, href: EXTERNAL_LINKS.tiktok, label: "TikTok" },
 ]
 
 export function Footer() {
@@ -56,7 +49,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="rounded-full border border-white/15 p-2.5 text-white/60 hover:border-accent hover:text-accent"
+                  className="footer-social-link flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/85"
                 >
                   <Icon size={16} />
                 </a>
@@ -66,11 +59,11 @@ export function Footer() {
 
           <div>
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/42">Navigation</p>
-            <nav className="flex flex-col gap-3">
+            <nav aria-label="Footer" className="flex flex-col gap-3">
               {NAV_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} className="text-sm text-white/72 hover:text-white">
+                <a key={link.href} href={link.href} className="flex min-h-11 items-center text-sm text-white/85 hover:text-white">
                   {link.label}
-                </Link>
+                </a>
               ))}
             </nav>
           </div>
@@ -78,19 +71,15 @@ export function Footer() {
           <div>
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/42">Hours</p>
             <ul className="space-y-2.5">
-              {[
-                { day: "Mon - Sun", time: "9:00 am - 10:00 pm" }
-              ].map((h) => (
-                <li key={h.day} className="flex justify-between gap-6 text-sm">
-                  <span className="text-white/60">{h.day}</span>
-                  <span className="text-white/90">{h.time}</span>
+              {HOURS.map((entry) => (
+                <li key={entry.days} className="flex justify-between gap-6 text-sm">
+                  <span className="text-white/60">{entry.shortDays}</span>
+                  <span className="text-white/90">{entry.hours}</span>
                 </li>
               ))}
             </ul>
             <p className="mt-6 text-sm text-white/60">
-              South Poblacion San Fernando
-              <br />
-              Cebu 6018
+              {LOCATION.address}
             </p>
           </div>
         </div>
